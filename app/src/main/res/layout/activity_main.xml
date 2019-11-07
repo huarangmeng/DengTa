@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/general_plan_name"
+        android:layout_width="223dp"
+        android:layout_height="59dp"
+        android:gravity="center"
+        android:text="JAVA学习"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/plan_author"
+        android:layout_width="98dp"
+        android:layout_height="24dp"
+        android:text="By HOLO"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="280dp"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="353dp"
+        android:layout_height="577dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_weight="10"
+        android:padding="5dp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="111dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+        <ImageButton
+            android:id = "@+id/main_plan"
+            android:layout_width = "30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/mytask"
+            ></ImageButton>
+    </LinearLayout>
+
+</RelativeLayout>

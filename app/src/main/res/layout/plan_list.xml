@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+       <TextView
+           android:id="@+id/plan_num"
+           android:layout_width="80dp"
+           android:layout_height="40dp"
+           android:text="第一阶段"
+           android:textSize="16dp"
+           android:gravity="center">
+       </TextView>
+
+        <TextView
+            android:id="@+id/plan_name"
+            android:layout_width="160dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="82dp"
+            android:text="JAVA基础"
+            android:gravity="center"
+            ></TextView>
+        <TextView
+            android:id="@+id/plan_time"
+            android:layout_width="240dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="20dp"
+            android:text="2019.11.7-2019.12.7"
+            ></TextView>
+
+        <ImageView
+            android:id="@+id/plan_state"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="340dp"
+            android:background="@mipmap/blue0"></ImageView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/alarm"
+            android:layout_weight="0"
+            android:layout_marginLeft="360dp"
+            android:src="@mipmap/alarm" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/mainText"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:typeface="sans"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.2"/>
+
+</LinearLayout>
