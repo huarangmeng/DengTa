@@ -19,6 +19,10 @@
         <activity android:name=".User.PersonActivity"/>
         <activity android:name=".Search.Search"/>
         <activity android:name=".Community.Community"/>
+        <activity android:name=".User.Login">
+
+        </activity>
+        <activity android:name=".User.Register"/>
     </application>
 
 </manifest>

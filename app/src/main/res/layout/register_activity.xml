@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bk"
+    android:orientation="vertical">
+    <!--输入框-->
+    <!--android:background="@drawabe/login_user_name_bg"-->
+    <!--输入框-->
+    <!--android:background="@drawable/login_psw_bg"-->
+    <!--按钮-->
+    <!--android:textColorHint="#a3a3a3"-->
+    <!--显示tv register , find_psw -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="330dp"
+        android:background="@mipmap/line"
+        >
+
+        <EditText
+            android:id="@+id/et_user_name"
+            android:layout_width="310dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="180dp"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="Username"
+            android:paddingLeft="8dp"
+            android:singleLine="true"
+            android:background="@null"
+            android:textColor="#C0C0C0"
+            android:textColorHint="#C0C0C0"
+            android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/et_user_name_bg"
+            android:layout_marginTop="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@mipmap/user_name_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+        android:background="@mipmap/line" >
+
+        <EditText
+            android:id="@+id/et_psw"
+            android:layout_width="310dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingLeft="8dp"
+            android:background="@null"
+            android:singleLine="true"
+            android:textColor="#C0C0C0"
+            android:textColorHint="#C0C0C0"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/paw_bg"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/psw_icon" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+        android:background="@mipmap/line" >
+
+        <EditText
+            android:id="@+id/et_psw_again"
+            android:layout_width="310dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="Confirm the password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:paddingLeft="8dp"
+            android:background="@null"
+            android:singleLine="true"
+            android:textColor="#C0C0C0"
+            android:textColorHint="#C0C0C0"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/psw_icon" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="35dp"
+        android:background="@mipmap/sign_up" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="13dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/register_hint"
+        />
+</LinearLayout>
