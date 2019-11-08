@@ -32,6 +32,7 @@ public class PlanAdapter extends ArrayAdapter<Plan> {
 
 
         textNum.setText(plan.getPlanNum());
+        textName.setText(plan.getPlanName());
         textTime.setText(plan.getStartTime()+"-"+plan.getEndTime());
 
         if(plan.getAlarm()) {
@@ -40,6 +41,16 @@ public class PlanAdapter extends ArrayAdapter<Plan> {
         else {
             alarm.setVisibility(View.GONE);
         }
+
+        if(plan.getState() == 0) {
+            state.setVisibility(View.VISIBLE);
+        }
+        else if(plan.getState() == 1){
+            state.setVisibility(View.GONE);
+        }else{
+            state.setVisibility(view.GONE);
+        }
+
         mainText.setText(plan.getMainText());
 
         return view;
