@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.lighthouse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.myapplication.Community.Community;
-import com.example.myapplication.Search.Search;
-import com.example.myapplication.User.PersonActivity;
-
+import com.lighthouse.Community.Community;
+import com.lighthouse.Plan.GeneralPlan;
+import com.lighthouse.Plan.Plan;
+import com.lighthouse.Plan.PlanAdapter;
+import com.lighthouse.Search.Search;
+import com.lighthouse.User.PersonActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,12 +51,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init(){
-        for(int i = 0;i<4;i++){
+        for(int i = 0;i<3;i++){
             Plan plan = new Plan();
-            plan.setState(0);
-            plan.setPlanNum("第"+i+"阶段");
-            plan.setPlanName("J");
-            plan.setMainText("第"+i+"阶段内容");
+            if(i == 0){
+                plan.setState(2);
+                plan.setMainText(" ");
+                plan.setPlanNum("第"+i+1+"阶段");
+                plan.setPlanName("JAVA基础课程");
+            }
+            else if(i == 1){
+                plan.setState(1);
+                plan.setMainText("JavaWeb课程内容涉及: HTML5课程、CSS3. JavaScript MySQL使用、JDBC连接池、Servlet. JSP、 AJAX、 jQuery、 Bootstrap." +
+                        "2.1第一部分: HTML51. html概述" +
+                        "2. htm|基本标签3.图片标签4.超链接标签");
+                plan.setPlanNum("第"+i+1+"阶段");
+                plan.setPlanName("JAVA Web");
+            }else{
+                plan.setState(0);
+                plan.setMainText(" ");
+                plan.setPlanNum("第"+i+1+"阶段");
+                plan.setPlanName("JAVA 框架课程");
+            }
             plan.setStartTime("1.0");
             plan.setEndTime("2.0");
             plan.setPlanId(i);
@@ -62,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             planList.add(plan);
         }
         generalPlan.setAuthorName("Holo");
-        generalPlan.setPlanName("JAVA");
+        generalPlan.setPlanName("JAVA课程学习");
         generalPlan.setPlanList(planList);
     }
     public void jumpinit(){
@@ -71,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         perButton = findViewById(R.id.main_personal);
         comButton = findViewById(R.id.main_community);
 
-        planButton.setBackgroundResource(R.mipmap.personal_icon_bright);
+        planButton.setBackgroundResource(R.mipmap.plan_icon_bright);
         comButton.setBackgroundResource(R.mipmap.community_icon_dark);
         perButton.setBackgroundResource(R.mipmap.personal_icon_dark);
         serButton.setBackgroundResource(R.mipmap.search_icon_dark);

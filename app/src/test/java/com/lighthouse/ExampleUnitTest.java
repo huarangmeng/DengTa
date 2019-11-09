@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.lighthouse;
 
 import org.junit.Test;
 

@@ -1,9 +1,11 @@
-package com.example.myapplication.User;
+package com.lighthouse.User;
+
+import org.litepal.crud.DataSupport;
 
 import java.util.Date;
 
-public class User {
-    private int userId;         //用户登录ID
+public class User extends DataSupport {
+    private String userId;         //用户登录ID
     private String userName;    //用户昵称
     private String name;        //用户名字
     private String sex;         //性别
@@ -15,11 +17,11 @@ public class User {
     private String passWord;    //密码
     private int idendity;       //身份：= 0 为高中生；= 1 为大学生以上 ；= -1 为管理员
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -1,8 +1,10 @@
-package com.example.myapplication;
+package com.lighthouse.Plan;
+
+import org.litepal.crud.DataSupport;
 
 import java.util.List;
 
-public class GeneralPlan {
+public class GeneralPlan extends DataSupport {
     private int generalPlanId; //总表ID
     private String authorName; //作者名字
     private int collegeId;     //学院ID
@@ -85,6 +87,5 @@ public class GeneralPlan {
     public void setCollegeId(int collegeId) {
         this.collegeId = collegeId;
     }
-
 
 }

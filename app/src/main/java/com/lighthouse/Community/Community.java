@@ -1,4 +1,4 @@
-package com.example.myapplication.Community;
+package com.lighthouse.Community;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.R;
-import com.example.myapplication.Search.Search;
-import com.example.myapplication.User.PersonActivity;
+import com.lighthouse.MainActivity;
+import com.lighthouse.R;
+import com.lighthouse.Search.Search;
+import com.lighthouse.User.PersonActivity;
 
 public class Community extends Activity {
     private ImageButton planButton;
@@ -28,7 +28,7 @@ public class Community extends Activity {
         perButton = findViewById(R.id.main_personal);
         comButton = findViewById(R.id.main_community);
 
-        planButton.setBackgroundResource(R.mipmap.personal_icon_dark);
+        planButton.setBackgroundResource(R.mipmap.plan_icon_dark);
         comButton.setBackgroundResource(R.mipmap.community_icon_bright);
         perButton.setBackgroundResource(R.mipmap.personal_icon_dark);
         serButton.setBackgroundResource(R.mipmap.search_icon_dark);

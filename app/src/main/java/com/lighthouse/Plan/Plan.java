@@ -1,6 +1,8 @@
-package com.example.myapplication;
+package com.lighthouse.Plan;
 
-public class Plan {
+import org.litepal.crud.DataSupport;
+
+public class Plan extends DataSupport {
     private int planId;          //子表ID
     private String startTime;    //子阶段开始时间
     private String endTime;      //子阶段结束时间
