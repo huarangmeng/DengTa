@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="direction">
+        <item>请选择方向</item>
+        <item>Android</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>PHP</item>
+        <item>.Net</item>
+        <item>C++</item>
+        <item>C</item>
+    </string-array>
+</resources>

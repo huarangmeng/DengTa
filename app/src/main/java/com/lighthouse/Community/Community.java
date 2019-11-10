@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.lighthouse.MainActivity;
@@ -12,6 +13,7 @@ import com.lighthouse.Search.Search;
 import com.lighthouse.User.PersonActivity;
 
 public class Community extends Activity {
+    private Button uploadPlanButton;
     private ImageButton planButton;
     private ImageButton serButton;
     private ImageButton perButton;
@@ -19,8 +21,17 @@ public class Community extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.community_activity);
-
         jumpinit();
+
+        uploadPlanButton = findViewById(R.id.upload_plan);
+        uploadPlanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Community.this, UploadPlan.class);
+                startActivity(intent);
+            }
+        });
     }
     public void jumpinit(){
         planButton = findViewById(R.id.main_plan);

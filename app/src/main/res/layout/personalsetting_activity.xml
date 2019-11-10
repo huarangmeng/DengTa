@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/标题"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="编辑资料"
+        android:textSize="23dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/水平分割线1"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:text="   基本信息"
+        android:gravity="center_vertical"
+        android:textSize="14dp"
+        android:background="#D5E2D5" />
+
+    <TextView
+        android:id="@+id/用户ID"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="  用户ID："
+        android:textSize="18dp"
+        android:gravity="center_vertical"
+        />
+
+    <TextView
+        android:id="@+id/水平分割线2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/密码"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  密码："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/用户昵称"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  用户昵称："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/用户名字"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  用户名字："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/性别"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  性别："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/生日"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  生日："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/年龄"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  年龄："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/身份"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  身份："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线9"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:text="   专业方向"
+        android:gravity="center_vertical"
+        android:textSize="14dp"
+        android:background="#D5E2D5" />
+
+    <EditText
+        android:id="@+id/所在学院"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  所在学院："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线10"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/所在专业"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  所在专业："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <EditText
+        android:id="@+id/选择方向"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:text="  选择方向："
+        android:textColor="#D8585353"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/水平分割线12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E7E5E5" />
+
+    <Button
+        android:id="@+id/保存"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:text="保存修改"
+        android:textSize="23dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:background="#4CAF50"/>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="major">
+        <item>请选择专业</item>
+        <item>计算机科学与技术</item>
+        <item>软件工程</item>
+        <item>数学</item>
+        <item>信息安全</item>
+    </string-array>
+</resources>

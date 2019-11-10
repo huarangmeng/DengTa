@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lighthouse.Plan.PlanEdit"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/whole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/edit_bg_purple"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ImageButton
+        android:id="@+id/alarmButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="131dp"
+        android:background="@mipmap/alarm"
+        android:onClick="setAlarm" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/liner_border"
+        android:layout_gravity="center_horizontal" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/liner_border"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1" >
+
+            <Space
+                android:layout_width="80dp"
+                android:layout_height="fill_parent" />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="2019/11/14"
+                android:textSize="20dp"
+                android:background="@drawable/liner_border"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="00:00"
+                android:background="@drawable/liner_border"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/liner_border"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="90dp"
+            android:layout_height="fill_parent" />
+
+        <TextView
+            android:id="@+id/alarmView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/liner_border"
+            android:text="Alert at ..."
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left|center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="190dp"
+        android:layout_weight="30"
+        android:gravity="top|left" />
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="onSave"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/view_none"
+        android:background="@mipmap/ic_menu_save"
+        />
+    <View
+        android:id="@+id/view_none"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

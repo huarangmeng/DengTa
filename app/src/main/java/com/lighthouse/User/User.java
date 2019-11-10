@@ -16,6 +16,15 @@ public class User extends DataSupport {
     private String direction;   //选择方向
     private String passWord;    //密码
     private int idendity;       //身份：= 0 为高中生；= 1 为大学生以上 ；= -1 为管理员
+    private int nowPlanId;      //当前选择的计划ID
+
+    public int getNowPlanId() {
+        return nowPlanId;
+    }
+    public void setNowPlanId(int nowPlanId) {
+        this.nowPlanId = nowPlanId;
+    }
+
 
     public String getUserId() {
         return userId;
