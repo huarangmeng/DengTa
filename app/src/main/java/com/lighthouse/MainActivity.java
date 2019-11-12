@@ -2,6 +2,7 @@ package com.lighthouse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +17,12 @@ import com.lighthouse.Community.Community;
 import com.lighthouse.Plan.GeneralPlan;
 import com.lighthouse.Plan.Plan;
 import com.lighthouse.Plan.PlanAdapter;
+import com.lighthouse.Plan.PlanConnection;
 import com.lighthouse.Plan.PlanEdit;
 import com.lighthouse.Search.Search;
 import com.lighthouse.User.PersonActivity;
+import com.lighthouse.User.User;
+import com.lighthouse.User.UserGpRelation;
 
 import org.litepal.crud.DataSupport;
 
@@ -34,11 +38,13 @@ public class MainActivity extends AppCompatActivity
     private GeneralPlan generalPlan = new GeneralPlan();
     private Plan[] array = new Plan[]{};
     private List<Plan> planList = new ArrayList<>(Arrays.asList(array));//计划列表
+    private int nowPlanId;
     private TextView textPlanName;    //计划名称
     private TextView textPlanAuthor;  //作者
     private ListView planListView;    //计划列表
     private PlanAdapter planAdapter;  //计划更新
     private TextView textMainTime;
+    private String userId;
     private String mainTime;          //时间
     private ImageButton comButton;
     private ImageButton serButton;
@@ -49,8 +55,35 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        jumpinit();
         init();
+        jumpinit();
+
+        planListView = findViewById(R.id.list);
+        planAdapter=new PlanAdapter(MainActivity.this, R.layout.plan_list, planList);
+        planListView.setAdapter(planAdapter);
+        planListView.setOnItemClickListener(this);
+        planListView.setOnItemLongClickListener(this);
+
+        loadHistoryData();
+    }
+
+    private void init(){
+        userId = getIntent().getStringExtra("userId");
+        List<User> users = DataSupport.findAll(User.class);
+        for(User user : users){
+            if(user.getUserId() == userId){
+                nowPlanId = user.getNowPlanId();
+                break;
+            }
+        }
+        nowPlanId = 2;//测试
+        List<GeneralPlan> generalPlans = DataSupport.findAll(GeneralPlan.class);
+        for(GeneralPlan temp :generalPlans){
+            if(temp.getGeneralPlanId() == nowPlanId){
+                generalPlan = temp;
+                break;
+            }
+        }
 
         textPlanName = findViewById(R.id.general_plan_name);
         textPlanAuthor = findViewById(R.id.plan_author);
@@ -59,45 +92,6 @@ public class MainActivity extends AppCompatActivity
         textPlanName.setText(generalPlan.getPlanName());
         textPlanAuthor.setText("BY " + generalPlan.getAuthorName());
         textMainTime.setText(mainTime);
-
-        planListView = findViewById(R.id.list);
-        planAdapter=new PlanAdapter(MainActivity.this, R.layout.plan_list, planList);
-        planListView.setAdapter(planAdapter);
-        planListView.setOnItemClickListener(this);
-        planListView.setOnItemLongClickListener(this);
-    }
-
-    private void init(){
-        for(int i = 0;i<3;i++){
-            Plan plan = new Plan();
-            if(i == 0){
-                plan.setState(2);
-                plan.setMainText(" ");
-                plan.setPlanNum("第"+i+1+"阶段");
-                plan.setPlanName("JAVA基础课程");
-            }
-            else if(i == 1){
-                plan.setState(1);
-                plan.setMainText("JavaWeb课程内容涉及: HTML5课程、CSS3. JavaScript MySQL使用、JDBC连接池、Servlet. JSP、 AJAX、 jQuery、 Bootstrap." +
-                        "2.1第一部分: HTML51. html概述" +
-                        "2. htm|基本标签3.图片标签4.超链接标签");
-                plan.setPlanNum("第"+i+1+"阶段");
-                plan.setPlanName("JAVA Web");
-            }else{
-                plan.setState(0);
-                plan.setMainText(" ");
-                plan.setPlanNum("第"+i+1+"阶段");
-                plan.setPlanName("JAVA 框架课程");
-            }
-            plan.setStartTime("1.0");
-            plan.setEndTime("2.0");
-            plan.setPlanId(i);
-            plan.setAlarm(false);
-            planList.add(plan);
-        }
-        generalPlan.setAuthorName("Holo");
-        generalPlan.setPlanName("JAVA课程学习");
-        generalPlan.setPlanList(planList);
 
         mainTime = getNowTime();
     }
@@ -116,6 +110,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(MainActivity.this, Community.class);
                 startActivity(intent);
             }
@@ -124,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(MainActivity.this, Search.class);
                 startActivity(intent);
             }
@@ -132,10 +128,33 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(MainActivity.this, PersonActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    private void loadHistoryData(){//加载历史计划
+        List<PlanConnection> planConnections = DataSupport.findAll(PlanConnection.class);
+
+        for(PlanConnection planConnection : planConnections){//遍历总表与子表的关系表
+            if(planConnection.getGeneralPlanId() == nowPlanId){//当关系表的ID为当前计划ID时
+                List<Plan> plans= DataSupport.findAll(Plan.class);
+
+                for(Plan record:plans) {//遍历子表，把子表加入到ListView中
+                    if(record.getPlanId() == planConnection.getPlanId()){
+                        int planId = record.getPlanId();
+                        String planNum = record.getPlanNum();
+                        String planName = record.getPlanName();
+                        boolean alarm = record.getAlarm();
+                        String mainText = record.getMainText();
+                        Plan temp = new Plan(planId, planNum, planName,alarm, mainText);
+                        planList.add(temp);
+                    }
+                }
+            }
+        }
     }
 
     @Override

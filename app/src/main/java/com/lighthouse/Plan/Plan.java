@@ -12,6 +12,14 @@ public class Plan extends DataSupport {
     private String planName;     //阶段名称
     private String planNum;      //第几阶段
 
+    public Plan(){}
+    public Plan(int planId,String planNum,String planName,Boolean alarm,String mainText){
+        this.planId = planId;
+        this.planNum = planNum;
+        this.planName = planName;
+        this.alarm = alarm;
+        this.mainText = mainText;
+    }
     public String getPlanNum() {
         return planNum;
     }

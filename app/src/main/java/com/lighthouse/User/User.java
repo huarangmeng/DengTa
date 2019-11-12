@@ -25,7 +25,6 @@ public class User extends DataSupport {
         this.nowPlanId = nowPlanId;
     }
 
-
     public String getUserId() {
         return userId;
     }

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.lighthouse.MainActivity;
 import com.lighthouse.R;
 
 import org.litepal.crud.DataSupport;
@@ -18,9 +19,9 @@ import java.util.List;
 public class Register extends Activity {
     private Button btn_register;//注册按钮
     //用户名，密码，再次输入的密码的控件
-    private EditText et_user_name,et_psw,et_psw_again;
+    private EditText et_user_id,et_psw,et_psw_again;
     //用户名，密码，再次输入的密码的控件的获取值
-    private String userName,psw,pswAgain;
+    private String userId,psw,pswAgain;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class Register extends Activity {
 
     private void init(){
         btn_register = (Button) findViewById(R.id.btn_register);
-        et_user_name = (EditText) findViewById(R.id.et_user_name);
+        et_user_id = (EditText) findViewById(R.id.et_user_name);
         et_psw = (EditText) findViewById(R.id.et_psw);
         et_psw_again = (EditText) findViewById(R.id.et_psw_again);
 
@@ -41,7 +42,7 @@ public class Register extends Activity {
                 //获取输入在相应控件中的字符串
                 getEditString();
                 //判断输入框内容
-                if(TextUtils.isEmpty(userName)){
+                if(TextUtils.isEmpty(userId)){
                     Toast.makeText(Register.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                     return;
                 }else if(TextUtils.isEmpty(psw)){
@@ -56,51 +57,49 @@ public class Register extends Activity {
                     /**
                      *从Litepal中读取输入的用户名，判断Litepal中是否有此用户名
                      */
-                }else if(isExistUserName(userName)){
+                }else if(isExistUserName(userId)){
                     Toast.makeText(Register.this, "此账户名已经存在", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
                     Toast.makeText(Register.this, "注册成功", Toast.LENGTH_SHORT).show();
                     //把账号、密码和账号标识保存到sp里面
-                    /**
-                     * 保存账号和密码到SharedPreferences中
-                     */
-                    saveRegisterInfo(userName, psw);
-                    //注册成功后把账号传递到LoginActivity.java中
-                    // 返回值到loginActivity显示
+
+                    saveRegisterInfo(userId, psw);
+
                     Intent data = new Intent();
-                    data.putExtra("userName", userName);
-                    setResult(RESULT_OK, data);
-                    //RESULT_OK为Activity系统常量，状态码为-1，
-                    // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
+                    data.putExtra("userId", userId);
+                    data.setClass(Register.this, MainActivity.class);
+                    //跳转到主页面
+                    startActivity(data);
+
                     Register.this.finish();
                 }
             }
         });
     }
     private void getEditString(){
-        userName = et_user_name.getText().toString().trim();
+        userId = et_user_id.getText().toString().trim();
         psw = et_psw.getText().toString().trim();
         pswAgain = et_psw_again.getText().toString().trim();
     }
 
-    private boolean isExistUserName(String userName){
-        boolean has_userName = false;
+    private boolean isExistUserName(String userId){
+        boolean has_userId = false;
         //查询数据库中是否存在相同账号
         List<User> users = DataSupport.findAll(User.class);
         for(User user:users){
-            if(user.getUserId().equals(userName)){
-                has_userName = true;
+            if(user.getUserId().equals(userId)){
+                has_userId = true;
                 break;
             }
         }
-        return has_userName;
+        return has_userId;
     }
-    private void saveRegisterInfo(String userName,String psw){
+    private void saveRegisterInfo(String userId,String psw){
         String md5Psw = MD5Utils.md5(psw);
         //将密码MD5 加密
         User user = new User();
-        user.setUserId(userName);
+        user.setUserId(userId);
         user.setPassWord(md5Psw);
         user.save();
     }

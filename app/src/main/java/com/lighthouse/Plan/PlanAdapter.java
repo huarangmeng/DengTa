@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.lighthouse.R;
 
-import org.litepal.crud.DataSupport;
-
 import java.util.List;
 
 public class PlanAdapter extends ArrayAdapter<Plan>{
@@ -31,7 +29,7 @@ public class PlanAdapter extends ArrayAdapter<Plan>{
         TextView textName=(TextView)view.findViewById(R.id.plan_name);
         TextView textTime=(TextView)view.findViewById(R.id.plan_time);
         ImageView alarm=(ImageView) view.findViewById(R.id.alarm);
-        TextView stateNmae=(TextView) view.findViewById(R.id.plan_state_name);
+        TextView stateName=(TextView) view.findViewById(R.id.plan_state_name);
         ImageView state =(ImageView) view.findViewById(R.id.plan_state);
         TextView mainText=(TextView)view.findViewById(R.id.mainText);
         LinearLayout linearLayout =(LinearLayout)view.findViewById(R.id.plan_list);
@@ -49,7 +47,7 @@ public class PlanAdapter extends ArrayAdapter<Plan>{
 
         if(plan.getState() == 0) {
             state.setBackgroundResource(R.mipmap.plan_incompleted);
-            stateNmae.setText("未完成");
+            stateName.setText("未完成");
         }
         else if(plan.getState() == 1){
             ViewGroup.LayoutParams params = mainText.getLayoutParams();
@@ -59,10 +57,10 @@ public class PlanAdapter extends ArrayAdapter<Plan>{
             paraml.height = 600;
             linearLayout.setLayoutParams(paraml);
             state.setBackgroundResource(R.mipmap.plan_incompleted);
-            stateNmae.setText("进行中");
+            stateName.setText("进行中");
         }else{
             state.setBackgroundResource(R.mipmap.plan_completed);
-            stateNmae.setText("已完成");
+            stateName.setText("已完成");
         }
 
         mainText.setText(plan.getMainText());

@@ -7,5 +7,6 @@
         <mapping class="com.lighthouse.Plan.PlanConnection"></mapping>
         <mapping class="com.lighthouse.Plan.Plan"></mapping>
         <mapping class="com.lighthouse.User.User"></mapping>
+        <mapping class="com.lighthouse.User.UserGpRelation"></mapping>
     </list>
 </litepal>

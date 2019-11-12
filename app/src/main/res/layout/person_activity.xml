@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/标题"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="我"
@@ -15,7 +15,7 @@
         />
 
     <TextView
-        android:id="@+id/水平分割线1"
+        android:id="@+id/dividing_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="50dp"
@@ -23,15 +23,15 @@
         />
 
     <ImageView
-        android:id="@+id/头像"
+        android:id="@+id/profile_photo"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="70dp"
-        android:background="@mipmap/head" />
+        app:srcCompat="@mipmap/head" />
 
     <TextView
-        android:id="@+id/名称"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="190dp"
@@ -42,7 +42,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/专业类别"
+        android:id="@+id/user_major"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="190dp"
@@ -52,7 +52,7 @@
         android:textSize="18dp"/>
 
     <Button
-        android:id="@+id/修改个人信息"
+        android:id="@+id/setup"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginLeft="190dp"
@@ -65,7 +65,7 @@
 
 
     <TextView
-        android:id="@+id/采纳数"
+        android:id="@+id/adoption_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
@@ -74,7 +74,7 @@
         android:textSize="30dp" />
 
     <TextView
-        android:id="@+id/采纳"
+        android:id="@+id/adoption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
@@ -83,7 +83,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/垂直分割线1"
+        android:id="@+id/dividing_line_2"
         android:layout_width="1dp"
         android:layout_height="70dp"
         android:layout_marginTop="220dp"
@@ -91,7 +91,7 @@
         android:background="#bfbfbf" />
 
     <TextView
-        android:id="@+id/收藏数"
+        android:id="@+id/collection_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="190dp"
@@ -100,7 +100,7 @@
         android:textSize="30dp" />
 
     <TextView
-        android:id="@+id/收藏"
+        android:id="@+id/collection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="188dp"
@@ -109,7 +109,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/垂直分割线2"
+        android:id="@+id/dividing_line_3"
         android:layout_width="1dp"
         android:layout_height="70dp"
         android:layout_marginTop="220dp"
@@ -117,7 +117,7 @@
         android:background="#bfbfbf" />
 
     <TextView
-        android:id="@+id/点赞数"
+        android:id="@+id/like_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="315dp"
@@ -126,7 +126,7 @@
         android:textSize="30dp" />
 
     <TextView
-        android:id="@+id/点赞"
+        android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="313dp"
@@ -135,14 +135,14 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/水平分割线2"
+        android:id="@+id/dividing_line_4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="295dp"
         android:background="#bfbfbf" />
 
     <Button
-        android:id="@+id/我的计划"
+        android:id="@+id/my_plan"
         android:layout_width="180dp"
         android:layout_height="160dp"
         android:layout_marginLeft="20dp"
@@ -154,7 +154,7 @@
         android:textSize="25dp" />
 
     <Button
-        android:id="@+id/完成进度"
+        android:id="@+id/my_progress"
         android:layout_width="180dp"
         android:layout_height="160dp"
         android:layout_marginLeft="210dp"
@@ -166,14 +166,14 @@
         android:textSize="25dp" />
 
     <TextView
-        android:id="@+id/水平分割线3"
+        android:id="@+id/dividing_line_5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="465dp"
         android:background="#bfbfbf" />
 
     <TextView
-        android:id="@+id/我的收藏"
+        android:id="@+id/my_colletion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="470dp"
@@ -182,7 +182,7 @@
         android:textSize="23dp"/>
 
     <TextView
-        android:id="@+id/水平分割线4"
+        android:id="@+id/dividing_line_6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="503dp"
@@ -190,7 +190,7 @@
 
 
     <TextView
-        android:id="@+id/水平分割线5"
+        android:id="@+id/dividing_line_7"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="660dp"
@@ -201,5 +201,6 @@
         layout="@layout/botton_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </RelativeLayout>

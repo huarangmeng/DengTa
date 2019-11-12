@@ -18,9 +18,12 @@ public class Community extends Activity {
     private ImageButton serButton;
     private ImageButton perButton;
     private ImageButton comButton;
+    private String userId;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.community_activity);
+
+        userId = getIntent().getStringExtra("userId");
         jumpinit();
 
         uploadPlanButton = findViewById(R.id.upload_plan);
@@ -28,6 +31,7 @@ public class Community extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(Community.this, UploadPlan.class);
                 startActivity(intent);
             }
@@ -48,6 +52,7 @@ public class Community extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(Community.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -56,6 +61,7 @@ public class Community extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(Community.this, Search.class);
                 startActivity(intent);
             }
@@ -64,6 +70,7 @@ public class Community extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(Community.this, PersonActivity.class);
                 startActivity(intent);
             }

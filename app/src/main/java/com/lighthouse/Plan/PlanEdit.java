@@ -29,9 +29,11 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
     private TextView alarm_view;   //闹钟时间显示
 
     private int planId;
+    private String planNum;
+    private String planName;
+    private String endTime;
     private String textDate;
     private String textTime;
-    private String endTime;
     private String mainText;
 
     //alarm clock
@@ -128,8 +130,6 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
 
     //******************************************************************************************
 
-
-
     //press the save button
     public void onSave(View v) {
         returnResult();
@@ -153,6 +153,8 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
         Intent it=new Intent();
 
         it.putExtra("planId",planId);
+        it.putExtra("planNum",planNum);
+        it.putExtra("planName",planName);
         //no need for date and time
         it.putExtra("alarm",alarm);
         it.putExtra("mainText",edt.getText().toString());
@@ -165,9 +167,8 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
         num=it.getIntExtra("num",0);
 
         planId=it.getIntExtra("planId",0);
-        textDate=it.getStringExtra("textDate");
-        textTime=it.getStringExtra("textTime");
-        endTime=it.getStringExtra("endTime");
+        planNum = it.getStringExtra("planNum");
+        planName = it.getStringExtra("planName");
         alarm=it.getStringExtra("alarm");
         mainText=it.getStringExtra("mainText");
     }
