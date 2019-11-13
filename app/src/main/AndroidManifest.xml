@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".User.PersonActivity"/>
         <activity android:name=".Search.Search"/>
@@ -26,14 +30,16 @@
         </activity>
         <activity android:name=".User.Register"/>
         <activity android:name=".Community.UploadPlan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".User.PersonalSetting"/>
         <activity android:name=".Plan.PlanEdit"/>
+        <activity android:name=".BootPage.FirstPage">
+
+        </activity>
+        <activity android:name=".BootPage.SecondPage"/>
+        <activity android:name=".BootPage.ThirdPage"/>
+        <activity android:name=".BootPage.FourPage"/>
     </application>
 
 </manifest>

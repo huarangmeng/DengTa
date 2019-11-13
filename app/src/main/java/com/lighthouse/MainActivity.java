@@ -35,6 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
+    //计划不能点击，闹钟没有实现
     private GeneralPlan generalPlan = new GeneralPlan();
     private Plan[] array = new Plan[]{};
     private List<Plan> planList = new ArrayList<>(Arrays.asList(array));//计划列表
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity
 
         textPlanName.setText(generalPlan.getPlanName());
         textPlanAuthor.setText("BY " + generalPlan.getAuthorName());
+        mainTime = getNowTime();
         textMainTime.setText(mainTime);
 
-        mainTime = getNowTime();
     }
     private void jumpinit(){
         planButton = findViewById(R.id.main_plan);

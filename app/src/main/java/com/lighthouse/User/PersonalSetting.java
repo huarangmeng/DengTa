@@ -17,6 +17,7 @@ import org.litepal.crud.DataSupport;
 import java.util.List;
 
 public class PersonalSetting extends Activity implements  AdapterView.OnItemSelectedListener{
+    //不能修改信息
     private Button saveButton;
     private Button backButton;
     private User user = new User();

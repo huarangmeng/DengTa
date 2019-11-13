@@ -13,6 +13,7 @@ import com.lighthouse.MainActivity;
 import com.lighthouse.R;
 
 public class PersonActivity extends Activity {
+    //信息未设置
     private ImageButton planButton;
     private ImageButton serButton;
     private ImageButton comButton;

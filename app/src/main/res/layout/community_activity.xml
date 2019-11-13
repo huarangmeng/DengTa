@@ -2,10 +2,136 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/upload_plan"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@mipmap/greenkuang"
+        >
+        <TextView
+            android:id="@+id/com_direction"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="JAVA学习社区"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginLeft="110dp" />
+        <Button
+            android:id="@+id/upload_plan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="60dp"
+            android:background="@mipmap/community_add"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="370dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@mipmap/community_bk">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@mipmap/com_plan_bk">
+            <TextView
+                android:id="@+id/com_plan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="JAVA入门级学习计划"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/com_plan_author"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Mr.Ma"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/com_plan_time"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:text="用时：30天"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="70dp">
+
+            <ImageButton
+                android:id="@+id/collection"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/collection_icon_dark"/>
+            <TextView
+                android:id="@+id/collection_num"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="0人"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:background="@mipmap/shu_line"/>
+
+            <ImageButton
+                android:id="@+id/comment"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/comment"/>
+            <TextView
+                android:id="@+id/comment_num"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="0条"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:background="@mipmap/shu_line"/>
+
+            <ImageButton
+                android:id="@+id/dian_zan"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/dian_zan_dark"/>
+            <TextView
+                android:id="@+id/dian_zan_num"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="0次"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/com_list"
+            android:layout_width="353dp"
+            android:layout_height="380dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="120dp"
+            android:layout_weight="10"
+            android:background="@null" />
+
+    </RelativeLayout>
     <include
         layout="@layout/botton_bar"/>
 </LinearLayout>

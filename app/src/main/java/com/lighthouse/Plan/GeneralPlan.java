@@ -15,6 +15,23 @@ public class GeneralPlan extends DataSupport {
     private List<Plan> planList;//计划列表
     private int planViews;      //浏览数
     private int planPraise;     //点赞数
+    private int planCollection; //收藏数
+    private int planComment;   //评论数
+
+    public int getPlanCollection() {
+        return planCollection;
+    }
+    public void setPlanCollection(int planCollection) {
+        this.planCollection = planCollection;
+    }
+
+    public int getPlanComment() {
+        return planComment;
+    }
+    public void setPlanComment(int planComment) {
+        this.planComment = planComment;
+    }
+
 
     public int getPlanViews() {
         return planViews;

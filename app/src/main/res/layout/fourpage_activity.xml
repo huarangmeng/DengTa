@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/four_bk">
+
+    <ImageButton
+        android:id="@+id/fx1"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="254dp"
+        android:background="@mipmap/android"/>
+
+    <ImageButton
+        android:id="@+id/fx2"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="317dp"
+        android:background="@mipmap/java"/>
+
+    <ImageButton
+        android:id="@+id/fx3"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="380dp"
+        android:background="@mipmap/web" />
+
+    <ImageButton
+        android:id="@+id/fx4"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="443dp"
+        android:background="@mipmap/shujuku"/>
+
+    <ImageButton
+        android:id="@+id/fx5"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="506dp"
+        android:background="@mipmap/unkown" />
+
+    <ImageButton
+        android:id="@+id/four_back"
+        android:layout_width="42dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="603dp"
+        android:background="@mipmap/backward"/>
+
+</RelativeLayout>

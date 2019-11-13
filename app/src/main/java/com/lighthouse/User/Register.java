@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.lighthouse.MainActivity;
+import com.lighthouse.BootPage.FirstPage;
 import com.lighthouse.R;
 
 import org.litepal.crud.DataSupport;
@@ -68,7 +68,7 @@ public class Register extends Activity {
 
                     Intent data = new Intent();
                     data.putExtra("userId", userId);
-                    data.setClass(Register.this, MainActivity.class);
+                    data.setClass(Register.this, FirstPage.class);
                     //跳转到主页面
                     startActivity(data);
 

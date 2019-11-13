@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/first_bk">
+
+    <ImageButton
+        android:id="@+id/high_school_student"
+        android:layout_width="65dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="320dp"
+        android:background="@mipmap/hith_school_student"/>
+
+    <ImageButton
+        android:id="@+id/college_student"
+        android:layout_width="97dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="320dp"
+        android:background="@mipmap/college_student"/>
+
+    <ImageButton
+        android:id="@+id/graduation"
+        android:layout_width="92dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="285dp"
+        android:layout_marginTop="320dp"
+        android:background="@mipmap/graduation" />
+
+    <ImageButton
+        android:id="@+id/first_next"
+        android:layout_width="42dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="322dp"
+        android:layout_marginTop="603dp"
+        android:background="@mipmap/forward"/>
+
+</RelativeLayout>
