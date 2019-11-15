@@ -16,6 +16,7 @@ import com.lighthouse.R;
 import com.lighthouse.User.PersonActivity;
 
 public class Search extends Activity {
+    //未完成
     private ImageButton planButton;
     private ImageButton comButton;
     private ImageButton perButton;

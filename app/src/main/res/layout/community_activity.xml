@@ -26,7 +26,7 @@
 
     <RelativeLayout
         android:layout_width="370dp"
-        android:layout_height="590dp"
+        android:layout_height="480dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:background="@mipmap/community_bk">

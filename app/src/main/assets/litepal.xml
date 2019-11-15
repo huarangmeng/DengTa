@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="LightHouse"></dbname>
-    <version value="1"></version>
+    <version value="2"></version>
     <list>
         <mapping class="com.lighthouse.Plan.GeneralPlan"></mapping>
         <mapping class="com.lighthouse.Plan.PlanConnection"></mapping>
         <mapping class="com.lighthouse.Plan.Plan"></mapping>
         <mapping class="com.lighthouse.User.User"></mapping>
         <mapping class="com.lighthouse.User.UserGpRelation"></mapping>
+        <mapping class="com.lighthouse.User.UserPraise"></mapping>
     </list>
 </litepal>

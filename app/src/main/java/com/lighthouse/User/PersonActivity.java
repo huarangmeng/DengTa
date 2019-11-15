@@ -6,11 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lighthouse.Search.Search;
 import com.lighthouse.Community.Community;
 import com.lighthouse.MainActivity;
 import com.lighthouse.R;
+
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
+
+import java.util.List;
 
 public class PersonActivity extends Activity {
     //信息未设置
@@ -18,13 +25,17 @@ public class PersonActivity extends Activity {
     private ImageButton serButton;
     private ImageButton comButton;
     private ImageButton perButton;
+    private TextView textUserName;
+    private TextView textUserMajor;
+    private User user = new User();
     private String userId;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.person_activity);
 
-        userId = getIntent().getStringExtra("userId");
+        Connector.getDatabase();
         jumpinit();
+        init();
 
         /*点击SETUP按钮进入个人信息修改界面*/
         Button setupButton = (Button) findViewById(R.id.setup);
@@ -38,7 +49,22 @@ public class PersonActivity extends Activity {
             }
         });
     }
+    private void init(){
+        userId = getIntent().getStringExtra("userId");
+        List<User> users = DataSupport.findAll(User.class);
+        for(User temp : users){
+            if(temp.getUserId().equals(userId)){
+                user = temp;
+                break;
+            }
+        }
+        textUserName = findViewById(R.id.user_name);
+        textUserMajor = findViewById(R.id.user_major);
 
+
+        textUserName.setText(user.getUserName());
+        textUserMajor.setText(user.getUserCollege() +" | "+user.getUserMajor());
+    }
     public void jumpinit(){
         planButton = findViewById(R.id.main_plan);
         serButton = findViewById(R.id.main_search);

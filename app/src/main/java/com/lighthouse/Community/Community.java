@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -13,18 +14,22 @@ import com.lighthouse.MainActivity;
 import com.lighthouse.Plan.GeneralPlan;
 import com.lighthouse.Plan.Plan;
 import com.lighthouse.Plan.PlanAdapter;
+import com.lighthouse.Plan.PlanConnection;
 import com.lighthouse.R;
 import com.lighthouse.Search.Search;
 import com.lighthouse.User.PersonActivity;
 import com.lighthouse.User.User;
 import com.lighthouse.User.UserGpRelation;
+import com.lighthouse.User.UserPraise;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Community extends Activity implements View.OnClickListener {
+public class Community extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
     //具体计划还未加入
     private TextView comDirection;
     private TextView comPlanName;
@@ -53,8 +58,25 @@ public class Community extends Activity implements View.OnClickListener {
 
         init();
         jumpinit();
+        Connector.getDatabase();
 
-        dianzanButton.setOnClickListener(this);
+        planListView = findViewById(R.id.com_list);
+        planAdapter = new PlanAdapter(Community.this, R.layout.plan_list, planList);
+        planListView.setAdapter(planAdapter);
+        planListView.setOnItemClickListener(this);   //计划表的单击监听
+
+        dianzanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isDianZan();
+            }
+        });
+        collectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCollection();
+            }
+        });
         uploadPlanButton.setOnClickListener(this);
     }
     private void init(){
@@ -71,29 +93,45 @@ public class Community extends Activity implements View.OnClickListener {
         commentNum = findViewById(R.id.comment_num);
         uploadPlanButton = findViewById(R.id.upload_plan);
 
-        int genPlanId = 0;
-        List<UserGpRelation> gpRelations = DataSupport.findAll(UserGpRelation.class);
-        for(UserGpRelation temp : gpRelations){
-            if(temp.getUserId() == userId){
-                genPlanId = temp.getCreationGeneralPlanId();
-                break;
-            }
-        }
-        if(genPlanId != 0){
-            List<GeneralPlan> generalPlans = DataSupport.findAll(GeneralPlan.class);
-            for(GeneralPlan temp : generalPlans){
-                if(temp.getGeneralPlanId() == genPlanId){
-                    generalPlan = temp;
-                    break;
+        List<GeneralPlan> generalPlans = DataSupport.findAll(GeneralPlan.class);
+        generalPlan = generalPlans.get(generalPlans.size()-1); //目前为最后一个
+
+        List<PlanConnection> planConnections = DataSupport.findAll(PlanConnection.class);
+        List<Plan> plans= DataSupport.findAll(Plan.class);
+        for(PlanConnection planConnection : planConnections){
+            if(planConnection.getGeneralPlanId() == generalPlan.getGeneralPlanId()){
+                //找到目标ID
+                for(Plan record : plans) {
+                    if(record.getPlanId() == planConnection.getPlanId()){
+                        int planId = record.getPlanId();
+                        String planNum = record.getPlanNum();
+                        String planName = record.getPlanName();
+                        boolean alarm = record.getAlarm();
+                        String mainText = record.getMainText();
+                        Plan temp = new Plan(planId, planNum, planName,alarm, mainText);
+                        planList.add(temp);
+                    }
                 }
             }
         }
+        List<UserPraise> userPraises = DataSupport.findAll(UserPraise.class);
+        for(UserPraise userPraise : userPraises){
+            if(userPraise.getGeneralPlanId() == generalPlan.getGeneralPlanId() && userPraise.getUserId().equals(userId)){
+                if(userPraise.isPraise()){
+                    dianzanButton.setBackgroundResource(R.mipmap.dian_zan_light);
+                }
+                if(userPraise.isCollection()){
+                    collectionButton.setBackgroundResource(R.mipmap.collection_icon_light);
+                }
+            }
+        }
+
         comPlanAuthor.setText(generalPlan.getAuthorName());
         comPlanName.setText(generalPlan.getPlanName());
         comPlanTime.setText(generalPlan.getStudyTime());
-        dianzanNum.setText(generalPlan.getPlanPraise() + "次");
-        collectionNum.setText(generalPlan.getPlanCollection() + "人");
-        commentNum.setText(generalPlan.getPlanComment() + "条");
+        dianzanNum.setText(String.valueOf(generalPlan.getPlanPraise()) + "次");
+        collectionNum.setText(String.valueOf(generalPlan.getPlanCollection()) + "人");
+        commentNum.setText(String.valueOf(generalPlan.getPlanComment()) + "条");
     }
     public void jumpinit(){
         planButton = findViewById(R.id.main_plan);
@@ -138,14 +176,7 @@ public class Community extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.dian_zan:
-                dianzanButton.setBackgroundResource(R.mipmap.dian_zan_light);
-                //数据库+1更新
-                break;
-            case R.id.collection:
-                collectionButton.setBackgroundResource(R.mipmap.collection_icon_light);
-                //数据库+1更新
-                break;
+
             case R.id.comment:
                 break;
             case R.id.upload_plan:
@@ -157,5 +188,79 @@ public class Community extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+    private void isDianZan(){
+        if(relationUP()){
+            List<UserPraise> userPraises = DataSupport.findAll(UserPraise.class);
+            for(UserPraise userPraise : userPraises){
+                if(userPraise.getGeneralPlanId() == generalPlan.getGeneralPlanId() && userPraise.getUserId().equals(userId)){
+                    if(userPraise.isPraise()){
+                        dianzanButton.setBackgroundResource(R.mipmap.dian_zan_dark);
+                        GeneralPlan record = new GeneralPlan();
+                        record.setPlanPraise(generalPlan.getPlanPraise()-1);
+                        record.updateAll("generalPlanId = ?",String.valueOf(generalPlan.getGeneralPlanId()));
+                        UserPraise record2 = new UserPraise();
+                        record2.setPraise(false);
+                        record2.updateAll("userId = ? and generalPlanId = ?",userId,String.valueOf(generalPlan.getGeneralPlanId()));
+                        dianzanNum.setText(String.valueOf(generalPlan.getPlanPraise()) + "次");
+                    }else{
+                        dianzanButton.setBackgroundResource(R.mipmap.dian_zan_light);
+                        GeneralPlan record = new GeneralPlan();
+                        record.setPlanPraise(generalPlan.getPlanPraise()+1);
+                        record.updateAll("generalPlanId = ?",String.valueOf(generalPlan.getGeneralPlanId()));
+                        UserPraise record2 = new UserPraise();
+                        record2.setPraise(true);
+                        record2.updateAll("userId = ? and generalPlanId = ?",userId,String.valueOf(generalPlan.getGeneralPlanId()));
+                        dianzanNum.setText(String.valueOf(generalPlan.getPlanPraise()+1) + "次");
+                    }
+                }
+            }
+        }
+    }
+    private void isCollection(){
+        if(relationUP()){
+            List<UserPraise> userPraises = DataSupport.findAll(UserPraise.class);
+            for(UserPraise userPraise : userPraises){
+                if(userPraise.getGeneralPlanId() == generalPlan.getGeneralPlanId() && userPraise.getUserId().equals(userId)){
+                    if(userPraise.isCollection()){
+                        collectionButton.setBackgroundResource(R.mipmap.collection_icon_dark);
+                        GeneralPlan record = new GeneralPlan();
+                        record.setPlanCollection(generalPlan.getPlanPraise());
+                        record.updateAll("generalPlanId = ?",String.valueOf(generalPlan.getGeneralPlanId()));
+                        UserPraise record2 = new UserPraise();
+                        record2.setCollection(false);
+                        record2.updateAll("userId = ? and generalPlanId = ?",userId,String.valueOf(generalPlan.getGeneralPlanId()));
+                        collectionNum.setText(String.valueOf(generalPlan.getPlanCollection()-1) + "人");
+                    }else{
+                        collectionButton.setBackgroundResource(R.mipmap.collection_icon_light);
+                        GeneralPlan record = new GeneralPlan();
+                        record.setPlanCollection(generalPlan.getPlanPraise()+1);
+                        record.updateAll("generalPlanId = ?",String.valueOf(generalPlan.getGeneralPlanId()));
+                        UserPraise record2 = new UserPraise();
+                        record2.setCollection(true);
+                        record2.updateAll("userId = ? and generalPlanId = ?",userId,String.valueOf(generalPlan.getGeneralPlanId()));
+                        collectionNum.setText(String.valueOf(generalPlan.getPlanCollection()+1) + "人");
+                    }
+                }
+            }
+        }
+    }
+    private boolean relationUP(){
+        List<UserPraise> userPraises = DataSupport.findAll(UserPraise.class);
+        for(UserPraise userPraise : userPraises){
+            if(userPraise.getGeneralPlanId() == generalPlan.getGeneralPlanId() && userPraise.getUserId().equals(userId)){
+                return true;
+            }
+        }
+        UserPraise record = new UserPraise();
+        record.setGeneralPlanId(generalPlan.getGeneralPlanId());
+        record.setUserId(userId);
+        record.save();
+        return true;
     }
 }

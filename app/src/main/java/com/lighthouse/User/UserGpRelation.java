@@ -1,6 +1,8 @@
 package com.lighthouse.User;
 
-public class UserGpRelation {//用户与所创建的学习表的关系
+import org.litepal.crud.DataSupport;
+
+public class UserGpRelation extends DataSupport {//用户与所创建的学习表的关系
     private String userId;
     private int creationGeneralPlanId;
 

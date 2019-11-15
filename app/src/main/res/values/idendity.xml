@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="idendity">
-        <item>请选择职业</item>
         <item>高中生</item>
         <item>本科生</item>
         <item>研究生</item>

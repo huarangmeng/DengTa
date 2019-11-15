@@ -81,7 +81,7 @@ public class UploadPlan extends AppCompatActivity implements  AdapterView.OnItem
 
         List<User> users = DataSupport.findAll(User.class);
         for(User user : users){
-            if(user.getUserId() == userId){
+            if(user.getUserId().equals(userId)){
                 userName = user.getUserName();
                 break;
             }
@@ -158,6 +158,10 @@ public class UploadPlan extends AppCompatActivity implements  AdapterView.OnItem
             planConnection.setPlanId(planlist.get(i).getPlanId());
             planConnection.save();
         }
+        UserGpRelation record = new UserGpRelation();//保存用户与上传计划联系
+        record.setUserId(userId);
+        record.setCreationGeneralPlanId(generalPlan.getGeneralPlanId());
+        record.save();
     }
 
     @Override

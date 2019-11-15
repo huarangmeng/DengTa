@@ -2,14 +2,12 @@ package com.lighthouse.User;
 
 import org.litepal.crud.DataSupport;
 
-import java.util.Date;
-
 public class User extends DataSupport {
     private String userId;         //用户登录ID
     private String userName;    //用户昵称
     private String name;        //用户名字
     private String sex;         //性别
-    private Date  birthday;     //生日
+    private String birthday;     //生日
     private int age;            //年龄
     private String userCollege; //所在学院
     private String userMajor;   //所在专业
@@ -17,6 +15,14 @@ public class User extends DataSupport {
     private String passWord;    //密码
     private int idendity;       //身份：= 0 为高中生；= 1 为大学生以上 ；= -1 为管理员
     private int nowPlanId;      //当前选择的计划ID
+    private boolean isFirst;
+
+    public boolean isFirst() {
+        return isFirst;
+    }
+    public void setFirst(boolean first) {
+        isFirst = first;
+    }
 
     public int getNowPlanId() {
         return nowPlanId;
@@ -57,11 +63,11 @@ public class User extends DataSupport {
         this.sex = sex;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

@@ -73,7 +73,7 @@ public class Login extends Activity {
 
                     //登录成功后关闭此页面进入主页
                     Intent myIntent=new Intent();
-                    myIntent.putExtra("data",userName);
+                    myIntent.putExtra("userId",userName);
                     //跳转到主界面，登录成功的状态传递到 MainPageActivity 中
                     myIntent.setClass(Login.this, MainActivity.class);
                     //myIntent.putExtra( ); name , value ;

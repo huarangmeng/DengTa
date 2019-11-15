@@ -28,7 +28,7 @@
         android:layout_height="130dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="70dp"
-        app:srcCompat="@mipmap/head" />
+        android:background="@mipmap/head" />
 
     <TextView
         android:id="@+id/user_name"
@@ -56,7 +56,7 @@
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginLeft="190dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="155dp"
         android:backgroundTint="#4CAF50"
         android:gravity="center"
         android:text="set up"

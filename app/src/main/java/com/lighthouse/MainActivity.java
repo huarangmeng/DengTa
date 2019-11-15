@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lighthouse.Community.Community;
 import com.lighthouse.Plan.GeneralPlan;
@@ -23,8 +24,10 @@ import com.lighthouse.Search.Search;
 import com.lighthouse.User.PersonActivity;
 import com.lighthouse.User.User;
 import com.lighthouse.User.UserGpRelation;
+import com.lighthouse.User.UserPraise;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity
     private GeneralPlan generalPlan = new GeneralPlan();
     private Plan[] array = new Plan[]{};
     private List<Plan> planList = new ArrayList<>(Arrays.asList(array));//计划列表
-    private int nowPlanId;
+    private int nowPlanId = 0;
     private TextView textPlanName;    //计划名称
     private TextView textPlanAuthor;  //作者
     private ListView planListView;    //计划列表
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private TextView textMainTime;
     private String userId;
     private String mainTime;          //时间
+    private TextView textMainUser;    //问好
     private ImageButton comButton;
     private ImageButton serButton;
     private ImageButton perButton;
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity
 
         init();
         jumpinit();
+        Connector.getDatabase();
 
         planListView = findViewById(R.id.list);
         planAdapter=new PlanAdapter(MainActivity.this, R.layout.plan_list, planList);
@@ -70,14 +75,17 @@ public class MainActivity extends AppCompatActivity
 
     private void init(){
         userId = getIntent().getStringExtra("userId");
+        textMainUser = findViewById(R.id.main_hello);
         List<User> users = DataSupport.findAll(User.class);
         for(User user : users){
-            if(user.getUserId() == userId){
+            if(user.getUserId().equals(userId)){
                 nowPlanId = user.getNowPlanId();
+                textMainUser.setText("你好！" + user.getUserName() + " !");
                 break;
             }
         }
-        nowPlanId = 2;//测试
+        findNowPlanId();//获取当前收藏的计划ID
+
         List<GeneralPlan> generalPlans = DataSupport.findAll(GeneralPlan.class);
         for(GeneralPlan temp :generalPlans){
             if(temp.getGeneralPlanId() == nowPlanId){
@@ -94,7 +102,6 @@ public class MainActivity extends AppCompatActivity
         textPlanAuthor.setText("BY " + generalPlan.getAuthorName());
         mainTime = getNowTime();
         textMainTime.setText(mainTime);
-
     }
     private void jumpinit(){
         planButton = findViewById(R.id.main_plan);
@@ -176,12 +183,23 @@ public class MainActivity extends AppCompatActivity
     }
     private void transportInformationToEdit(Intent it,Plan record) {
         it.putExtra("planId",record.getPlanId());
-        it.putExtra("alarm",record.getAlarm());
+        it.putExtra("alarm","");
         it.putExtra("mainText",record.getMainText());
     }
+
+    private void findNowPlanId(){
+        //获取当前收藏的计划ID
+        List<UserPraise> userPraises = DataSupport.findAll(UserPraise.class);
+        for(UserPraise userPraise : userPraises){
+            if(userPraise.getUserId().equals(userId) && userPraise.isCollection()){
+                nowPlanId = userPraise.getGeneralPlanId();
+            }
+        }
+    }
+
     private Plan getPlanWithNum(int num) {
         String whereArgs = String.valueOf(num);
-        Plan record= DataSupport.where("num = ?", whereArgs).findFirst(Plan.class);
+        Plan record= DataSupport.where("planId = ?", whereArgs).findFirst(Plan.class);
         return record;
     }
     public String getNowTime(){

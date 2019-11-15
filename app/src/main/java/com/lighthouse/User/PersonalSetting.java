@@ -3,21 +3,23 @@ package com.lighthouse.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.lighthouse.R;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.util.List;
 
 public class PersonalSetting extends Activity implements  AdapterView.OnItemSelectedListener{
-    //不能修改信息
     private Button saveButton;
     private Button backButton;
     private User user = new User();
@@ -46,8 +48,8 @@ public class PersonalSetting extends Activity implements  AdapterView.OnItemSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personalsetting_activity);
 
+        Connector.getDatabase();
         init();
-
         sexSpinner.setOnItemSelectedListener(this);      //性别的选择监听
         idenditySpinner.setOnItemSelectedListener(this); //身份的选择监听
         collegeSpinner.setOnItemSelectedListener(this);  //学院的选择监听
@@ -61,6 +63,7 @@ public class PersonalSetting extends Activity implements  AdapterView.OnItemSele
                 saveInfromation();  //保存个人信息到数据库中
 
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(PersonalSetting.this,PersonActivity.class);
                 startActivity(intent);
             }
@@ -69,6 +72,7 @@ public class PersonalSetting extends Activity implements  AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("userId",userId);
                 intent.setClass(PersonalSetting.this,PersonActivity.class);
                 startActivity(intent);
             }
@@ -77,6 +81,21 @@ public class PersonalSetting extends Activity implements  AdapterView.OnItemSele
 
     private void saveInfromation(){
         getInfromation();    //获得修改的信息
+        User updateUser = new User();
+        updateUser.setAge(Integer.parseInt(userAge));
+        updateUser.setBirthday(userBirthday);
+        if(useIdendity.equals("高中生")){
+            updateUser.setIdendity(0);
+        }else{
+            updateUser.setIdendity(1);
+        }
+        updateUser.setName(Name);   //用户本名
+        updateUser.setUserName(userName); //用户昵称
+        updateUser.setSex(useSex);
+        updateUser.setUserCollege(useCollege);
+        updateUser.setUserMajor(useMajor);
+        updateUser.setDirection(useDirection);
+        updateUser.updateAll("userId = ?",userId);
     }
 
     private void getInfromation(){
@@ -109,14 +128,29 @@ public class PersonalSetting extends Activity implements  AdapterView.OnItemSele
         userId = getIntent().getStringExtra("userId");
         List<User> users = DataSupport.findAll(User.class);
         for(User temp : users){
-            if(temp.getUserId() == userId){
+            if(temp.getUserId().equals(userId)){
                 user = temp;
                 break;
             }
         }
         editUseName.setText(user.getUserName());
         editName.setText(user.getName());
-        editUseAge.setText(user.getAge());
+        editUseAge.setText(String.valueOf(user.getAge()));
+        setSpinnerDefaultValue(collegeSpinner,user.getUserCollege());
+        setSpinnerDefaultValue(majorSpinner,user.getUserMajor());
+        setSpinnerDefaultValue(directionSpinner,user.getDirection());
+    }
+
+    private void setSpinnerDefaultValue(Spinner spinner, String value) {
+        //设置Spinner 初始值
+        SpinnerAdapter apsAdapter = spinner.getAdapter();
+        int size = apsAdapter.getCount();
+        for (int i = 0; i < size; i++) {
+            if (TextUtils.equals(value, apsAdapter.getItem(i).toString())) {
+                spinner.setSelection(i,true);
+                break;
+            }
+        }
     }
 
     @Override
