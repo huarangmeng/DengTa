@@ -27,8 +27,14 @@ public class PersonActivity extends Activity {
     private ImageButton perButton;
     private TextView textUserName;
     private TextView textUserMajor;
+    private TextView textAdopt;
+    private TextView textCollection;
+    private TextView textPraise;
     private User user = new User();
     private String userId;
+    private int adoptNum = 0;
+    private int collectionNum = 0;
+    private int praiseNum = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.person_activity);
@@ -60,10 +66,15 @@ public class PersonActivity extends Activity {
         }
         textUserName = findViewById(R.id.user_name);
         textUserMajor = findViewById(R.id.user_major);
-
+        textAdopt = findViewById(R.id.adoption_number);
+        textCollection = findViewById(R.id.collection_number);
+        textPraise = findViewById(R.id.like_number);
 
         textUserName.setText(user.getUserName());
         textUserMajor.setText(user.getUserCollege() +" | "+user.getUserMajor());
+        textAdopt.setText(String.valueOf(adoptNum));
+        textPraise.setText(String.valueOf(praiseNum));
+        textCollection.setText(String.valueOf(collectionNum));
     }
     public void jumpinit(){
         planButton = findViewById(R.id.main_plan);

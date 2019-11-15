@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Connector.getDatabase();
         init();
         jumpinit();
-        Connector.getDatabase();
 
         planListView = findViewById(R.id.list);
         planAdapter=new PlanAdapter(MainActivity.this, R.layout.plan_list, planList);
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent it=new Intent(MainActivity.this, PlanEdit.class);
 
-        Plan record=getPlanWithNum(position);
+        Plan record=getPlanWithNum(generalPlan.getGeneralPlanId()*1000+position);
 
         //add information into intent
         transportInformationToEdit(it, record);
@@ -184,6 +184,8 @@ public class MainActivity extends AppCompatActivity
     private void transportInformationToEdit(Intent it,Plan record) {
         it.putExtra("planId",record.getPlanId());
         it.putExtra("alarm","");
+        it.putExtra("planNum",record.getPlanNum());
+        it.putExtra("planName",record.getPlanName());
         it.putExtra("mainText",record.getMainText());
     }
 

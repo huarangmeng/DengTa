@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Holo的快速JAVA学习计划"
+                android:hint="请输入你的计划名"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 />

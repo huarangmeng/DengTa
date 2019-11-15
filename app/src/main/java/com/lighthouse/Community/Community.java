@@ -50,15 +50,15 @@ public class Community extends Activity implements View.OnClickListener, Adapter
     private ImageButton perButton;
     private ImageButton comButton;
     private String userId;
-    private GeneralPlan generalPlan;
+    private GeneralPlan generalPlan = new GeneralPlan();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.community_activity);
 
+        Connector.getDatabase();
         init();
         jumpinit();
-        Connector.getDatabase();
 
         planListView = findViewById(R.id.com_list);
         planAdapter = new PlanAdapter(Community.this, R.layout.plan_list, planList);

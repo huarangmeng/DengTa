@@ -55,8 +55,8 @@ public class UploadPlan extends AppCompatActivity implements  AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.uploadplan_activity);
 
-        init();
         Connector.getDatabase();
+        init();
         //loadHistoryData();
 
         majorSpinner.setOnItemSelectedListener(this);   //专业的选择监听
@@ -169,7 +169,7 @@ public class UploadPlan extends AppCompatActivity implements  AdapterView.OnItem
         //单击子计划进入编辑
         Intent it=new Intent(UploadPlan.this,PlanEdit.class);
 
-        Plan record = getPlanId(position);
+        Plan record = getPlanId(generalPlan.getGeneralPlanId()*1000+position);
 
         //add information into intent
         transportInformationToEdit(it, record);
@@ -279,6 +279,8 @@ public class UploadPlan extends AppCompatActivity implements  AdapterView.OnItem
     private void transportInformationToEdit(Intent it,Plan record) {
         it.putExtra("planId",record.getPlanId());
         it.putExtra("alarm","");
+        it.putExtra("planNum",record.getPlanNum());
+        it.putExtra("planName",record.getPlanName());
         it.putExtra("mainText",record.getMainText());
     }
 

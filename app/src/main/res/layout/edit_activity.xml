@@ -49,22 +49,20 @@
                 android:layout_width="80dp"
                 android:layout_height="fill_parent" />
 
-            <TextView
-                android:id="@+id/dateText"
+            <EditText
+                android:id="@+id/text_num"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="2019/11/14"
+                android:hint="第几阶段"
                 android:textSize="20dp"
                 android:background="@drawable/liner_border"
                 android:layout_marginLeft="10dp" />
 
-            <TextView
-                android:id="@+id/timeText"
+            <EditText
+                android:id="@+id/text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="00:00"
+                android:hint="请输入阶段名称"
                 android:background="@drawable/liner_border"
                 android:textSize="20dp"
                 android:layout_marginLeft="10dp" />

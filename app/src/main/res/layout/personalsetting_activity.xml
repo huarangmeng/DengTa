@@ -49,7 +49,7 @@
         android:layout_height="40dp"
         android:background="@null"
         android:gravity="center_vertical"
-        android:text="XXXXXXXXXXXXXXX"
+        android:hint="xxxx/xx/xx"
         android:textColor="#D8585353"
         android:textSize="18dp" />
         />

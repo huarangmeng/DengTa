@@ -22,18 +22,15 @@ import com.lighthouse.R;
 import java.util.Calendar;
 
 public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, View.OnLongClickListener{
-    private TextView date_text;   //日期
-    private TextView time_text;   //时间
     private ImageButton alarm_button;  //闹钟
     private EditText edt;           //编辑文字框
     private TextView alarm_view;   //闹钟时间显示
+    private EditText editNum;
+    private EditText editName;
 
     private int planId;
     private String planNum;
     private String planName;
-    private String endTime;
-    private String textDate;
-    private String textTime;
     private String mainText;
 
     //alarm clock
@@ -56,16 +53,15 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
         Intent it=getIntent();
         getInformationFromMain(it);
 
-        date_text=(TextView) findViewById(R.id.dateText);
-        time_text=(TextView) findViewById(R.id.timeText);
+
         alarm_button=(ImageButton) findViewById((R.id.alarmButton));
         //alarm_button.setBackgroundResource(R.mipmap.ic_launcher);
         edt=(EditText) findViewById(R.id.editText);
         //edt.setBackgroundColor(color[tag]);
         alarm_view=(TextView) findViewById(R.id.alarmView);
+        editNum = (EditText) findViewById(R.id.text_num);
+        editName = (EditText) findViewById(R.id.text_name);
 
-        date_text.setText(textDate);
-        time_text.setText(textTime);
         edt.setText(mainText);
 
         alarm_view.setOnLongClickListener(this);
@@ -122,7 +118,6 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
         alarm_minute=minute;
 
         alarm=alarm_year+"/"+alarm_month+"/"+alarm_day+" "+alarm_hour+":"+alarm_minute;
-        endTime = alarm_year+"/"+alarm_month+"/"+alarm_day;
         alarm_view.setText("Alert at "+alarm+"!");
         alarm_view.setVisibility(View.VISIBLE);
         Toast.makeText(this,"Alarm will be on at "+alarm+" !",Toast.LENGTH_LONG).show();
@@ -153,8 +148,8 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
         Intent it=new Intent();
 
         it.putExtra("planId",planId);
-        it.putExtra("planNum",planNum);
-        it.putExtra("planName",planName);
+        it.putExtra("planNum",editNum.getText().toString());
+        it.putExtra("planName",editName.getText().toString());
         //no need for date and time
         it.putExtra("alarm",alarm);
         it.putExtra("mainText",edt.getText().toString());
@@ -164,8 +159,6 @@ public  class PlanEdit extends Activity implements DatePickerDialog.OnDateSetLis
 
     //read Intent information from main_activity
     private void getInformationFromMain(Intent it) {
-        num=it.getIntExtra("num",0);
-
         planId=it.getIntExtra("planId",0);
         planNum = it.getStringExtra("planNum");
         planName = it.getStringExtra("planName");
