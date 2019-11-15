@@ -3,7 +3,9 @@ package com.lighthouse.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +47,14 @@ public class Register extends Activity {
                 if(TextUtils.isEmpty(userId)){
                     Toast.makeText(Register.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                     return;
+                }else if(userId.length() != 7){
+                    Toast.makeText(Register.this, "用户名长度需为7位", Toast.LENGTH_SHORT).show();
+                    return;
                 }else if(TextUtils.isEmpty(psw)){
                     Toast.makeText(Register.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if(psw.length() < 6 || psw.length() > 12){
+                    Toast.makeText(Register.this, "密码长度需为6-12位", Toast.LENGTH_SHORT).show();
                     return;
                 }else if(TextUtils.isEmpty(pswAgain)){
                     Toast.makeText(Register.this, "请再次输入密码", Toast.LENGTH_SHORT).show();
@@ -77,6 +85,7 @@ public class Register extends Activity {
             }
         });
     }
+
     private void getEditString(){
         userId = et_user_id.getText().toString().trim();
         psw = et_psw.getText().toString().trim();
